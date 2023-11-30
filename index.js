@@ -62,7 +62,7 @@ const runPDFBox = async (filepath, _options) => {
 
     const maxBuffer = options.maxBuffer || 1024 * 2000;
     const command = 'java';
-    const commandArgs = ['-jar', `${constants.DIRECTORY.VENDOR + constants.VENDOR_PDF_BOX_JAR}`, 'PDFToImage', '-imageType', options.imageType, '-startPage', options.page, '-endPage', options.page, copyFilePath];
+    const commandArgs = ['-jar', `"${constants.DIRECTORY.VENDOR + constants.VENDOR_PDF_BOX_JAR}"`, 'PDFToImage', '-imageType', options.imageType, '-startPage', options.page, '-endPage', options.page, copyFilePath];
     await executeCommand(command, commandArgs, { maxBuffer });
 
     uri.suffix(options.imageType);
@@ -89,7 +89,7 @@ const runTika = async (filepath, _commandOption, options) => {
     const maxBuffer = (options && options.maxBuffer) || 1024 * 2000;
     const commandOption = _commandOption || 'html';
     const command = 'java';
-    const commandArgs = ['-jar', `${constants.DIRECTORY.VENDOR + constants.VENDOR_TIKA_JAR}`, `--${commandOption}`, filepath];
+    const commandArgs = ['-jar', `"${constants.DIRECTORY.VENDOR + constants.VENDOR_TIKA_JAR}"`, `--${commandOption}`, filepath];
     return executeCommand(command, commandArgs, { maxBuffer });
 };
 
